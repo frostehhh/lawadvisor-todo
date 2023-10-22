@@ -5,9 +5,9 @@ import java.time.OffsetDateTime
 import java.util.UUID
 
 data class CreateTodoDto(
-        val userId: UUID,
-        val title: String?,
-        val details: String?,
+    val userId: UUID,
+    val title: String?,
+    val details: String?,
 )
 
 fun CreateTodoDto.toEntity(currentTime: OffsetDateTime) = Todo(

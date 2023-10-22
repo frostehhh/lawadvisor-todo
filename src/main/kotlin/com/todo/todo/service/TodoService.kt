@@ -7,6 +7,7 @@ import com.todo.todo.repository.TodoRepository
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
 import java.time.OffsetDateTime
+import java.util.*
 
 @Service
 class TodoService(
@@ -21,5 +22,15 @@ class TodoService(
 
         val currentTime = OffsetDateTime.now()
         return todoRepository.save(createTodoDto.toEntity(currentTime))
+    }
+
+    fun getTodos(userId: UUID?): List<Todo> {
+        LOGGER.info("Received request to query todos: userId - {}", userId)
+
+        return if (userId != null) {
+            todoRepository.findByUserId(userId)
+        } else {
+            todoRepository.findAll()
+        }
     }
 }
