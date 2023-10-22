@@ -1,4 +1,4 @@
-package com.todo.todo
+package com.todo
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
