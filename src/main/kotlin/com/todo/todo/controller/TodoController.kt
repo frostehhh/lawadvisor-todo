@@ -5,6 +5,7 @@ import com.todo.todo.dto.UpdateTodoDto
 import com.todo.todo.entity.Todo
 import com.todo.todo.service.TodoService
 import org.springframework.http.HttpStatus
+import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PatchMapping
 import org.springframework.web.bind.annotation.PathVariable
@@ -42,5 +43,12 @@ class TodoController(
         @RequestBody updateTodoRequest: UpdateTodoDto,
     ): Todo {
         return todoService.updateTodo(todoId, updateTodoRequest)
+    }
+
+    @DeleteMapping("/{todoId}")
+    fun deleteTodo(
+        @PathVariable todoId: UUID,
+    ) {
+        return todoService.deleteTodo(todoId)
     }
 }

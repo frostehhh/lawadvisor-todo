@@ -62,4 +62,20 @@ class TodoService(
                 LOGGER.info("Successfully updated todo: {}", it)
             }
     }
+
+    fun deleteTodo(todoId: UUID) {
+        LOGGER.info(
+            "Received request to delete todo: todoId - {}",
+            todoId,
+        )
+
+        todoRepository.findByIdOrNull(todoId)?.run {
+            todoRepository.delete(this)
+            LOGGER.info("Successfully deleted todo: todoId - {}", todoId)
+        } ?: throw ServiceApiErrorCode.TODO_NOT_FOUND.toException(
+            data = mapOf(
+                "todoId" to todoId
+            )
+        )
+    }
 }
