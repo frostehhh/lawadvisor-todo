@@ -32,7 +32,7 @@ class TodoController(
 
     @GetMapping
     fun getTodos(
-        @RequestParam(required = false) userId: UUID?,
+        @RequestParam(required = true) userId: UUID,
     ): List<Todo> {
         return todoService.getTodos(userId)
     }
